@@ -9,7 +9,7 @@ const Destination =async () => {
   console.log(data);
   return (
     <div className='max-w-6xl mx-auto'>
-      <h2>All destination</h2>
+      <h2>All destination : {data.length}</h2>
       <div className='grid grid-cols-3 gap-3 my-10'> 
         {
           data.map((i) => {
@@ -44,7 +44,7 @@ const Destination =async () => {
                   <Link href={`/destination/${i._id}`}>
                     <Button variant="ghost" className={'mt-1 text-cyan-500'}>
                       {' '}
-                       Book Now
+                      View Details
                     </Button>
                   </Link>
                 </div>
