@@ -5,20 +5,10 @@ import { Button, DateField, Label } from '@heroui/react';
 import { useState } from 'react';
 
 
-// category: 'Beach';
-// country: 'Afganistan';
-// departureDate: '2026-05-24';
-// description: 'yes';
-// destinationName: 'Hillside';
-// duration: '7';
-// imageUrl: 'https://th.bing.com/th/id/OIP.DzLCbWqpj5id2046oQq23AHaE7?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3';
-// price: '456';
-// _id: '6a01a0fedc73223f75f128e0';
 
 const BookingCard = ({ data }) => {
   const [departureDate, setDepartureDate] = useState(null);
-  // console.log(new Date(departureDate));
-  // console.log(data);
+ 
   const {data: session,} = authClient.useSession(); 
   const user = session?.user;
   // console.log(user);
@@ -36,16 +26,18 @@ const BookingCard = ({ data }) => {
     };
     // console.log(bookingData);
 
-
+    // get token from better auth in client component *****************
+    const { data: tokenData } = await authClient.token();
+    
     const res = await fetch('http://localhost:5000/bookings', {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${tokenData?.token}`,
       },
-      body: JSON.stringify(bookingData)
-      })
+      body: JSON.stringify(bookingData),
+    });
     const result = await res.json();
-
   }
   return (
     <div className="border-2 shadow-md rounded-lg p-5 hover:shadow-lg">

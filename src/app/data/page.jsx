@@ -8,7 +8,7 @@ const DataPage = () => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget);
     const datas = Object.fromEntries(formData.entries());
-    console.log(datas);
+    // console.log(datas);
 
     const res = await fetch("http://localhost:5000/data", {
       method: "POST",

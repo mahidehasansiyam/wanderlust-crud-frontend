@@ -8,9 +8,19 @@ const MyBookings = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
-  const user = session?.user;
-  // console.log(user);
-  const res = await fetch(`http://localhost:5000/bookings/${user?.id}`);
+    const user = session?.user;
+
+  // get token from better auth in server component *****************
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+
+
+  const res = await fetch(`http://localhost:5000/bookings/${user?.id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const data = await res.json();
   // console.log(data);
   return (

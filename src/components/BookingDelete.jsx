@@ -1,16 +1,25 @@
 'use client';
 
+
+
+import { authClient } from '@/lib/auth-client';
 import { TrashBin } from '@gravity-ui/icons';
 import { AlertDialog, Button } from '@heroui/react';
 const BookingDelete = ({ bookingId }) => {
+
   const handleCancelBooking = async () => {
+
+    // get token from better auth in client component *****************
+    const { data: tokenData } = await authClient.token();
     const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        authorization: `Bearer ${tokenData?.token}`,
       },
     })
     const data = await res.json();
+    window.location.reload();
   };
 
   return (
