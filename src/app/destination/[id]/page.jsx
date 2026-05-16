@@ -16,7 +16,7 @@ const DestinationDetails = async ({ params }) => {
    });
   console.log(token);
 
-  const res = await fetch(`http://localhost:5000/data/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/data/${id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },

@@ -8,7 +8,7 @@ const Delete = ({data}) => {
   const { _id, destinationName } = data;
 
   const handleDelete =async () => {
-    const res = fetch(`http://localhost:5000/data/${_id}`, {
+    const res = fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/data/${_id}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',

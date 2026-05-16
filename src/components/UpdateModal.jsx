@@ -34,13 +34,16 @@ const UpdateModal = ({data}) => {
     const formData = new FormData(e.currentTarget);
     const updateData = Object.fromEntries(formData.entries());
 
-    const res = await fetch(`http://localhost:5000/data/${_id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/data/${_id}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
       },
-      body : JSON.stringify(updateData)
-    });
+    );
     const result = await res.json();
     redirect("/destination")
     

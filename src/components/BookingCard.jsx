@@ -29,7 +29,7 @@ const BookingCard = ({ data }) => {
     // get token from better auth in client component *****************
     const { data: tokenData } = await authClient.token();
     
-    const res = await fetch('http://localhost:5000/bookings', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

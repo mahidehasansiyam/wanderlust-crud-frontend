@@ -10,7 +10,7 @@ const DataPage = () => {
     const datas = Object.fromEntries(formData.entries());
     // console.log(datas);
 
-    const res = await fetch("http://localhost:5000/data", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/data`, {
       method: "POST",
       headers: {
         'content-type': 'application/json'

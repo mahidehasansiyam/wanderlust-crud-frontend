@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const Destination =async () => {
-  const res = await fetch('http://localhost:5000/data');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/data`);
   const data = await res.json()
   console.log(data);
   return (
